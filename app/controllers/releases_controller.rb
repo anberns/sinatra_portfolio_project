@@ -19,6 +19,15 @@ class ReleasesController < ApplicationController
     end
   end
 
+  #load release details
+  get '/releases/:id' do
+    if logged_in?
+      erb :'releases/edit'
+    else 
+      redirect to '/'
+    end
+  end
+
   #create new release
   post '/releases' do 
     if logged_in?
