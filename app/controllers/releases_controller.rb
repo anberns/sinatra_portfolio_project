@@ -24,10 +24,14 @@ class ReleasesController < ApplicationController
     if logged_in?
       if params["artist"] != "" && params["title"] != ""
         album_hash = find_album_info(params["artist"], params["title"])
-        puts album_hash
-        #release = Release.create(title: params["title"], artist: params["artist"], label: params["label"], genre: params["genre"], release_year: params["release_year"])
-        #release.user_id = session[:user_id]
-        #release.save
+        release = Release.create(title: album_hash[:title], artist: album_hash[:artist])
+        release.user_id = session[:user_id]
+        release.save
+        album_hash[:tracks].each do |track|
+          new_track = Track.create(title: track)
+          new_track.release_id = release.id 
+          new_track.save
+        end
         redirect to '/releases'
       else
         redirect to '/releases/new'
