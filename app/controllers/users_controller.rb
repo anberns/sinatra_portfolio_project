@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   #login form
-  get 'login' do 
+  get '/login' do 
     if logged_in?
       @user = current_user
       redirect to '/records'
