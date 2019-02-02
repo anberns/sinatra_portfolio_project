@@ -1,23 +1,23 @@
 releases_list= {
     "Release 1" => {
-      :artist => "Artist 1"
-      :label => "Label 1"
-      :genre => "techno"
-      :year_released=> 1999
+      :artist => "Artist 1",
+      :label => "Label 1",
+      :genre => "techno",
+      :release_year => 1999,
       :user_id => 1
     },
     "Release 2" => {
-      :artist => "Artist 2"
-      :label => "Label 2"
-      :genre => "techno"
-      :year_released=> 2010 
+      :artist => "Artist 2",
+      :label => "Label 2",
+      :genre => "techno",
+      :release_year => 2010, 
       :user_id => 1
     },
     "Release 3" => {
-      :artist => "Artist 3"
-      :label => "Label 3"
-      :genre => "techno"
-      :year_released=> 2014 
+      :artist => "Artist 3",
+      :label => "Label 3",
+      :genre => "techno",
+      :release_year => 2014,
       :user_id => 2
     }
   }
@@ -33,12 +33,12 @@ end
 
 user_list = {
     "anberns" => {
-      :email => "anberns@gmail.com"
-      :password => "password"
+      :email => "anberns@gmail.com",
+      :password_digest => "password"
     },
     "user2" => {
-      :email => "e@mail.com"
-      :password => "1234"
+      :email => "e@mail.com",
+      :password_digest => "1234"
     }
   }
 

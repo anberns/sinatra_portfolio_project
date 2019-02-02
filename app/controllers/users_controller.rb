@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect '/releases'
     end
+  end
 
   #login form
   get '/login' do 
