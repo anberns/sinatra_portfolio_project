@@ -1,11 +1,15 @@
-<h1>Add an existing release or create a new one</h1>
+<h1>Create a New Release</h1>
 <br>
-<form method="post" action="/releases">
-  <% Release.all.each do |release| %>
-    <<label><%= release.title %> by <%= release.artist %></label>
-    <input type="checkbox" id="release_<%=release.id%>" name="user[release_ids][]" value="<%= release.id %>"><br>
-  <% end %>
-  <br>
-  <label>New release</label>
-  <input type="text" id="new_release" name="release[title]">
-  
+<form method="post" action="/releases/">
+  <label>Title</label>
+  <input type="text" id="title" name="title">
+  <label>Artist</label>
+  <input type="text" id="artist" name="artist"> 
+  <label>Label</label>
+  <input type="text" id="label" name="label">
+  <label>Genre</label>
+  <input type="text" id="Genre" name="Genre">
+  <label>Release Year</label>
+  <input type="text" id="release_year" name="release_year">
+  <input type="submit" value="Create">
+</form>
