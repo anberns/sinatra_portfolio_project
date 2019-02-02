@@ -3,22 +3,19 @@ releases_list= {
       :artist => "Artist 1",
       :label => "Label 1",
       :genre => "techno",
-      :release_year => 1999,
-      :user_id => 1
+      :release_year => 1999
     },
     "Release 2" => {
       :artist => "Artist 2",
       :label => "Label 2",
       :genre => "techno",
-      :release_year => 2010, 
-      :user_id => 1
+      :release_year => 2010 
     },
     "Release 3" => {
       :artist => "Artist 3",
       :label => "Label 3",
       :genre => "techno",
-      :release_year => 2014,
-      :user_id => 2
+      :release_year => 2014
     }
   }
 
@@ -34,11 +31,11 @@ end
 user_list = {
     "anberns" => {
       :email => "anberns@gmail.com",
-      :password_digest => BCrypt::Password.create('password')
+      :password_digest => 'password'
     },
     "user2" => {
       :email => "e@mail.com",
-      :password_digest => BCrypt::Password.create('1234')
+      :password_digest => '1234'
     }
   }
 
