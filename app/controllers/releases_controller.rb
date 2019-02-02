@@ -19,10 +19,11 @@ class ReleasesController < ApplicationController
     end
   end
 
-  #create new tweet
+  #create new release
   post '/releases' do 
     if logged_in?
       if params["artist"] != "" && params["title"] != ""
+        #album_hash = find_album_info(params["artist"], params["title"])
         release = Release.create(title: params["title"], artist: params["artist"], label: params["label"], genre: params["genre"], release_year: params["release_year"])
         release.user_id = session[:user_id]
         release.save

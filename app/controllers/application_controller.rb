@@ -25,4 +25,7 @@ class ApplicationController < Sinatra::Base
     return User.find(session[:user_id])
   end
 
+  def find_album_info(artist, title)
+    
+
 end
