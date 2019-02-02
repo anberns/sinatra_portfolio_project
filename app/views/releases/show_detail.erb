@@ -1,0 +1,14 @@
+<% @user.releases.each do |release| %>
+  <%= release.title %></a><br>
+  -<%= release.artist %><br><br>
+<% end %>
+<ol>
+    <% release.tracks.each do |track| %>
+      <li><%= track.title %></li>
+    <% end %>
+  </ol>
+  <a class="button" href="/releases/#{<%= @release.id %>}/edit">Edit Release</a>
+  <form method="post" id="form1" action="/releases/<%= @release.id %>/delete">
+    <input type="hidden" name="_method" value="delete" />
+  </form>
+  <button type="submit" form="form1">Delete Release</button>

@@ -22,6 +22,7 @@ class ReleasesController < ApplicationController
   #load release details
   get '/releases/:id' do
     if logged_in?
+      @release = Release.find(params[:id])
       erb :'releases/edit'
     else 
       redirect to '/'
@@ -47,6 +48,45 @@ class ReleasesController < ApplicationController
       end
     else
       redirect :'/'
+    end
+  end
+
+
+  #load edit form
+  get '/tweets/:id/edit' do
+    if logged_in?
+      @tweet = Tweet.find(params[:id])
+      erb :'tweets/edit_tweet'
+    else
+      redirect to '/login'
+    end
+  end 
+
+  #edit one tweet
+  patch '/tweets/:id' do 
+    if logged_in?
+      if params["content"] != ""
+        @tweet = Tweet.find(params[:id])
+        @tweet.update(content: params["content"])
+        erb :'tweets/show_tweet'
+      else
+        redirect to "/tweets/#{params[:id]}/edit"
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+  #delete one tweet
+  delete '/releases/:id/delete' do
+    if logged_in?
+      release = Release.find(params[:id])
+      if release.user_id == session[:user_id]
+        Release.destroy(params[:id])
+      end
+      redirect to '/releases'
+    else
+      redirect to '/'
     end
   end
 
