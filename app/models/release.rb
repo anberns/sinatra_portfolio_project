@@ -1,4 +1,5 @@
 class Release < ActiveRecord::Base
   has_many :tracks
-  belongs_to :user
+  has_many :user_releases
+  has_many :users, through: :user_releases
 end
