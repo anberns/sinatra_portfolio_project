@@ -34,11 +34,11 @@ end
 user_list = {
     "anberns" => {
       :email => "anberns@gmail.com",
-      :password_digest => "password"
+      :password_digest => BCrypt::Password.create('password')
     },
     "user2" => {
       :email => "e@mail.com",
-      :password_digest => "1234"
+      :password_digest => BCrypt::Password.create('1234')
     }
   }
 

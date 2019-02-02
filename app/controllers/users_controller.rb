@@ -41,6 +41,14 @@ class UsersController < ApplicationController
     end
   end
 
+  #logout user 
+  get '/logout' do 
+    if logged_in?
+      session.clear
+    end
+    redirect to '/login'
+  end
+
   #show user releases
   get '/releases' do
     if logged_in?
