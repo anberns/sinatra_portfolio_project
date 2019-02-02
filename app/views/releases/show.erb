@@ -8,14 +8,6 @@
     <% end %>
   </ul>
 <% end %>
+<a class="button" href="/releases/new">Add a New Release</a>
+<br>
 <a href="/logout">Logout</a>
-
-
-<form method="post" action="/releases">
-  <% Release.all.each do |release| %>
-    <<label><%= release.title %> by <%= release.artist %></label>
-    <input type="checkbox" id="release_<%=release.id%>" name="user[release_ids][]" value="<%= release.id %>"><br>
-  <% end %>
-  <br>
-  <label>New release</label>
-  <input type="text" id="new_release" name="release[title]">

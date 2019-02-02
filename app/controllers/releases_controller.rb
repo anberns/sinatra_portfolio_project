@@ -1,10 +1,10 @@
 class ReleasesController < ApplicationController
 
   #show user releases
-  get '/collection' do
+  get '/releases' do
     if logged_in?
       @user = current_user
-      erb :'users/show'
+      erb :'releases/show'
     else
       redirect to '/'
     end
