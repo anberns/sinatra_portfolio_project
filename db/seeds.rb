@@ -28,27 +28,6 @@ releases_list.each do |title, releases_hash|
   p.save
 end
 
-user_list = {
-    "anberns" => {
-      :email => "anberns@gmail.com",
-      :password_digest => 'password'
-    },
-    "user2" => {
-      :email => "e@mail.com",
-      :password_digest => '1234'
-    }
-  }
-
-user_list.each do |username, user_hash|
-  p = User.new
-  p.username = username
-  user_hash.each do |attribute, value|
-      p[attribute] = value
-  end
-  p.save
-end
-
-
 track_list = {
     "Track 1.1" => {
       :release_id => 1
