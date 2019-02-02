@@ -1,0 +1,10 @@
+<% @user.releases.each do |release| %>
+  <h2><%= releases.title %></h2>
+  <h3><%= releases.artist %></h3>
+  <h3><%= releases.title %></h3>
+  <ul>
+    <% release.tracks.each do |track| %>
+      <li><%= track.title %></li>
+    <% end %>
+  </ul>
+<% end %>
