@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 6) do
 
   create_table "releases", force: :cascade do |t|
     t.string  "artist"
@@ -19,11 +19,15 @@ ActiveRecord::Schema.define(version: 4) do
     t.string  "label"
     t.string  "genre"
     t.integer "release_year"
-    t.integer "user_id"
   end
 
   create_table "tracks", force: :cascade do |t|
     t.string  "title"
+    t.integer "release_id"
+  end
+
+  create_table "user_releases", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "release_id"
   end
 
