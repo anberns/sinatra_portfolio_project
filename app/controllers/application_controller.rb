@@ -40,9 +40,15 @@ class ApplicationController < Sinatra::Base
       :title => title,
       :artist => artist
     }
-    label_div = release_info.css("div.content")[0]
+    profile_div = release_info.css("div.profile")
+    label_div = profile_div.css("div.content").first
     label = label_div.css("a").attribute("href").value
     release_hash[:label] = label
+    tracks = release_info.css("span.tracklist_track_title")
+    track_array = tracks.collect do |track|
+      track.text
+    end
+    release_hash[:tracks] = track_array 
     release_hash
     
   end
