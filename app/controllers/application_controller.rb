@@ -32,5 +32,19 @@ class ApplicationController < Sinatra::Base
   def find_album_info(artist, title)
     html = open("https://www.discogs.com/search/?type=all&title=#{plusify(title)}&artist=#{plusify(artist)}&label=&track=&catno=&barcode=&anv=&format=&credit=&genre=&style=&country=&year=&submitter=&contributor=&matrix=&advanced=1")
     search_results = Nokogiri::HTML(html)
+    release = search_results.css("div.shortcut_navigable")[0]
+    url = release.css("a")[0].attribute("href").value
+    full_url = "https://www.discogs.com" + url 
+    release_info = Nokogiri::HTML(open(full_url))
+    release_hash = {
+      :title => title,
+      :artist => artist
+    }
+    label_div = release_info.css("div.content")[0]
+    label = label_div.css("a").attribute("href").value
+    release_hash[:label] = label
+    release_hash
+    
+  end
 
 end
