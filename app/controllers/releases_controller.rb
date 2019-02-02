@@ -1,11 +1,12 @@
 class ReleasesController < ApplicationController
 
-  #load signup form
-  get '/releases' do
+  #show user releases
+  get '/collection' do
     if logged_in?
-      erb :'releases/show'
+      @user = current_user
+      erb :'users/show'
     else
-      erb :'users/signup'
+      redirect to '/'
     end
   end
 
