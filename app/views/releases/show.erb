@@ -1,5 +1,13 @@
-<ol>
-  <% Release.all.each do |release| %>
-    <li><%= release.title %> by <%= release.artist %></li>
-  <% end %>
-</ol>
+<% @user.releases.each do |release| %>
+  <h2><%= releases.title %></h2>
+  <h3><%= releases.artist %></h3>
+  <h3><%= releases.title %></h3>
+  <ul>
+    <% release.tracks.each do |track| %>
+      <li><%= track.title %></li>
+    <% end %>
+  </ul>
+<% end %>
+<a href="/add_release">Edit your collection</a>
+<a href="/releases">Show all releases in our database</a>
+<a href="/logout">Logout</a>
