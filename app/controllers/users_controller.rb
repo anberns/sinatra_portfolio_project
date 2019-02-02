@@ -50,9 +50,9 @@ class UsersController < ApplicationController
   end
 
   #show user releases
-  get '/users/:slug' do
+  get '/collection' do
     if logged_in?
-      @user = User.find_by_slug(params[:slug])
+      @user = current_user
       erb :'users/show'
     else
       redirect to '/'
