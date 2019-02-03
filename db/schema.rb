@@ -11,15 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 7) do
+ActiveRecord::Schema.define(version: 8) do
 
   create_table "releases", force: :cascade do |t|
     t.string  "artist"
     t.string  "title"
-    t.string  "label"
-    t.string  "genre"
-    t.integer "release_year"
     t.integer "user_id"
+    t.string  "description"
   end
 
   create_table "tracks", force: :cascade do |t|

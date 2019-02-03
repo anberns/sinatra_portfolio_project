@@ -10,7 +10,7 @@ class ReleasesController < ApplicationController
     end
   end
 
-  #load release createform
+  #load release create form
   get '/releases/new' do
     if logged_in?
       erb :'releases/new'
@@ -48,6 +48,19 @@ class ReleasesController < ApplicationController
       end
     else
       redirect :'/'
+    end
+  end
+
+  #delete release
+  delete '/releases/:id/delete' do 
+    if logged_in?
+      release = Release.find(params[:id])
+      if release.user_id == session[:user_id]
+        Release.destroy(params[:id])
+      end
+      redirect to '/releases'
+    else
+      redirect to '/'
     end
   end
 

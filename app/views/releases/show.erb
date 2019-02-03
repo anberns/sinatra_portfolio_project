@@ -1,6 +1,8 @@
 <% @user.releases.each do |release| %>
   <%= release.title %> <%= release.id %><br>
   -<%= release.artist %><br><br>
+  <a href="/releases/<%= release.id %>/edit">Edit</a>
+  <a href="/releases/<%= release.id %>/delete">Delete</a>
 <% end %>
 <a class="button" href="/releases/new">Add a New Release</a>
 <br>
