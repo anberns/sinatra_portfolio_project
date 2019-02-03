@@ -35,6 +35,7 @@ class ReleasesController < ApplicationController
       if params["artist"] != "" && params["title"] != ""
         album_hash = find_album_info(params["artist"], params["title"])
         release = Release.create(title: album_hash[:title], artist: album_hash[:artist])
+        release.description = params["description"]
         release.user_id = session[:user_id]
         release.save
         album_hash[:tracks].each do |track|
