@@ -6,7 +6,7 @@ class TracksController < ApplicationController
       @tracks = Track.all.sort_by { |track| track.title }
       erb :'tracks/show'
     else
-      redirct to '/users/signup'
+      redirect to '/'
     end
   end
 end

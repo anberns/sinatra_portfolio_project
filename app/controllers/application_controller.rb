@@ -35,6 +35,10 @@ class ApplicationController < Sinatra::Base
     release = search_results.css("div.shortcut_navigable")[0]
     url = release.css("a")[0].attribute("href").value
     full_url = "https://www.discogs.com" + url 
+    image_a = search_results.css("a.thumbnail_link")
+    image_span = image_a.css("span.thumbnail_center")
+    image_url = image_span.css("img").attribute("data-src").value
+    puts image_url
     release_info = Nokogiri::HTML(open(full_url))
     release_hash = {
       :title => title,
