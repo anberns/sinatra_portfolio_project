@@ -1,7 +1,12 @@
+<br>
 <form method="post" id="form1" action="/releases/<%= @release.id %>/edit">
   <input type="hidden" name="_method" value="patch" />
-  <input type="text" name="title" value="<%= @release.title %>"><br>
-  <input type="text" name="artist" value="<%= @release.artist %>"><br>
-  <input type="text" name="description" value="<%= @release.description %>"><br>
+  <label>Title</label><br>
+  <input type="text" name="title" value="<%= @release.title %>"><br><br>
+  <label>Artist</label><br>
+  <input type="text" name="artist" value="<%= @release.artist %>"><br><br>
+  <label>Description</label><br>
+  <input type="text" name="description" value="<%= @release.description %>"><br><br>
 </form>
-<button type="submit" form="form1">Update Release</button>
+<button class="button" type="submit" form="form1">Update</button>
+
