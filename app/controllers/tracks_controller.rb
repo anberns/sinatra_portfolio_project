@@ -9,4 +9,13 @@ class TracksController < ApplicationController
       redirect to '/'
     end
   end
+
+  get '/tracks/delete' do
+    if logged_in?
+      Track.find_each(&:destroy)
+      erb :'tracks/show'
+    else
+      redirect to '/'
+    end
+  end
 end
