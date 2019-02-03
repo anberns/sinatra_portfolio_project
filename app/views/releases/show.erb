@@ -1,4 +1,5 @@
 <% @user.releases.each do |release| %>
+  <img src="<%= release.img_link %>"><br>
   <%= release.title %><br>
   -<%= release.artist %><br>
   -<%= release.description %><br>

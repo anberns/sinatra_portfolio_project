@@ -38,11 +38,11 @@ class ApplicationController < Sinatra::Base
     image_a = search_results.css("a.thumbnail_link")
     image_span = image_a.css("span.thumbnail_center")
     image_url = image_span.css("img").attribute("data-src").value
-    puts image_url
     release_info = Nokogiri::HTML(open(full_url))
     release_hash = {
       :title => title,
-      :artist => artist
+      :artist => artist,
+      :img_link => image_url
     }
     tracks = release_info.css("span.tracklist_track_title")
     track_array = tracks.collect do |track|

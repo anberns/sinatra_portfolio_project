@@ -36,6 +36,7 @@ class ReleasesController < ApplicationController
         album_hash = find_album_info(params["artist"], params["title"])
         release = Release.create(title: album_hash[:title], artist: album_hash[:artist])
         release.description = params["description"]
+        release.img_link = album_hash[:img_link]
         release.user_id = session[:user_id]
         release.save
         album_hash[:tracks].each do |track|
@@ -82,6 +83,9 @@ class ReleasesController < ApplicationController
     if logged_in?
       release = Release.find(params[:id])
       if release.user_id == session[:user_id]
+        release.tracks.each do |track|
+          Track.destroy(track.id)
+        end
         Release.destroy(params[:id])
       end
       redirect to '/releases'

@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 9) do
 
   create_table "releases", force: :cascade do |t|
     t.string  "artist"
     t.string  "title"
     t.integer "user_id"
     t.string  "description"
+    t.string  "img_link"
   end
 
   create_table "tracks", force: :cascade do |t|
