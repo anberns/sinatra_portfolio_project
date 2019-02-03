@@ -1,14 +1,18 @@
-<img src="<%= @release.img_link %>"><br>
-<%= @release.title %></a><br>
--<%= @release.artist %><br>
--<%= @release.description %><br>
-<ol>
-  <% @release.tracks.each do |track| %>
-    <li><%= track.title %></li>
-  <% end %>
-</ol>
-<a href="/releases">Back</a>
-<a href="/releases/<%= @release.id %>/edit">Edit</a>
-<form method="post" action="/releases/<%= @release.id %>/delete">
-  <input type="hidden" name="_method" value="delete" />
-<input type="submit" id="submit" value="Delete"><br>
+<div class="release_details">
+  <img src="<%= @release.img_link %>">
+</div>
+<div class="release_details">
+  <p class="title"><%= @release.title %></a></p>
+  <p class="artist"><%= @release.artist %></p>
+  <p class="description"><%= @release.description %></p>
+  <ol>
+    <% @release.tracks.each do |track| %>
+      <li><%= track.title %></li>
+    <% end %>
+  </ol>
+  <a class="button" href="/releases">Back</a>
+  <a class="button" href="/releases/<%= @release.id %>/edit">Edit</a>
+  <form method="post" action="/releases/<%= @release.id %>/delete">
+    <input type="hidden" name="_method" value="delete" />
+  <input class="button delete" type="submit" id="submit" value="Delete"><br>
+</div>

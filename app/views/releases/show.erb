@@ -1,9 +1,11 @@
 <% @user.releases.each do |release| %>
+<div class="album_card">
   <img src="<%= release.img_link %>"><br>
-  <%= release.title %><br>
-  -<%= release.artist %><br>
-  -<%= release.description %><br>
-  <a href="/releases/<%= release.id %>">Details</a><br><br>
+  <p class="title"><%= release.title %></p>
+  <p class="artist"><%= release.artist %></p>
+  <p class="description"><%= release.description %></p>
+  <a class="button" href="/releases/<%= release.id %>">Details</a><br><br>
+</div>
 <% end %>
 <br>
 <div class="show_nav">

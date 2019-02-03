@@ -12,8 +12,12 @@ a {
   border-radius:5px;
   color:#fff;
   margin-right:10px;
-  padding:10px 10px 10px 10px;
-  font-size: 1.3em;
+  padding:5px 10px ;
+  font-size: 1.1em;
+}
+
+.delete {
+  background-color: red;
 }
 
 .wrapper {
@@ -36,7 +40,7 @@ a {
   background-color: black;
   color: white;
   height: 50px;
-  font-size: 1em;
+  font-size: .9em;
   padding-top: 0px;
   text-align: center;
   position: fixed;
@@ -71,4 +75,39 @@ img, video, audio, iframe, table, form {
 .show_nav {
   position: fixed;
   bottom: 70px;
+}
+
+.album_button {
+  position: fixed;
+  bottom: 20px;
+}
+.album_card {
+  width: 200px;
+  height: 400px;
+  margin-right: 15px;
+  display: inline;
+  float: left;
+}
+
+.release_details {
+  width: 400px;
+  display: inline;
+  float: left;
+  margin-right: 15px;
+}
+
+.title {
+  margin: 0px;
+  font-weight: bold;
+  font-size: 1.8em;
+}
+
+.artist {
+  margin: 5px 0;
+  font-size: 1.5em;
+}
+
+.description {
+  margin: 5px 0 10px 0;
+  font-size: 1em;
 }
