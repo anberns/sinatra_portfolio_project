@@ -4,16 +4,20 @@
     <title>Essential Albums</title>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <div class="site_name">
-      <h1>Essential Albums</h1>
-    </div>
-    <%= yield %> 
-
+    <div class="wrapper">
+      <div class="site_name">
+        <h1>Essential Albums</h1>
+      </div>
+      <div class="content">
+        <%= yield %> 
+      </div>
+      <div class="footer">
+        <p>Sinatra Project | Aaron Berns</p>
+      </div>
+    </div> <!-- wrapper -->
   </body>
-  <footer>
-    <p>@ Footer message here</p>
-  </footer>
+  
 </html>
