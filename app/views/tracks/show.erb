@@ -1,8 +1,6 @@
-<ul>
-<% @tracks.each do |track| %>
-  <li>
-    <%= track.title %>
-  </li>
-<% end %>
-</ul>
-<a href="/releases">Back</a>
+<div class="all_tracks">
+  <% @tracks.each do |track| %>
+      <p><%= track.title %> - <%= track.release.artist %></p>
+  <% end %>
+</div>
+<a class="button show_nav" href="/releases">Back to Collection</a>

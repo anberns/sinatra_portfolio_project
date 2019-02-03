@@ -10,7 +10,7 @@
       <li><%= track.title %></li>
     <% end %>
   </ol>
-  <a class="button" href="/releases">Back</a><br><br>
+  <a class="button" href="/releases">Collection</a><br><br>
   <a class="button" href="/releases/<%= @release.id %>/edit">Edit</a>
   <form method="post" action="/releases/<%= @release.id %>/delete">
     <input type="hidden" name="_method" value="delete" />
