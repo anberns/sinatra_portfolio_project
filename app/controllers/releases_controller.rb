@@ -53,11 +53,16 @@ class ReleasesController < ApplicationController
   end
 
   #load release edit form
-  get 'releases/:id/edit' do
+  get '/releases/:id/edit' do
     if logged_in?
       @release = Release.find(params[:id])
       erb :'releases/edit'
-  #edit a release
+    else 
+      redirect :'/'
+    end
+  end
+
+  #update a release
   patch '/releases/:id/edit' do 
     if logged_in?
       if params["artist"] != "" && params["title"] != ""
