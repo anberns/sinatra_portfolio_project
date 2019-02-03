@@ -23,7 +23,7 @@ class ReleasesController < ApplicationController
   get '/releases/:id' do
     if logged_in?
       @release = Release.find(params[:id])
-      erb :'releases/edit'
+      erb :'releases/show_detail'
     else 
       redirect to '/'
     end
@@ -46,6 +46,26 @@ class ReleasesController < ApplicationController
         redirect to '/releases'
       else
         redirect to '/releases/new'
+      end
+    else
+      redirect :'/'
+    end
+  end
+
+  #load release edit form
+  get 'releases/:id/edit' do
+    if logged_in?
+      @release = Release.find(params[:id])
+      erb :'releases/edit'
+  #edit a release
+  patch '/releases/:id/edit' do 
+    if logged_in?
+      if params["artist"] != "" && params["title"] != ""
+        release = Release.find(params[:id])
+        release.update(title: params["title"], artist: params["artist"], description: params["description"])
+        redirect to "/releases/#{params[:id]}"
+      else
+        redirect to "/releases/#{params[:id]}/edit"
       end
     else
       redirect :'/'

@@ -2,10 +2,7 @@
   <%= release.title %> <%= release.id %><br>
   -<%= release.artist %><br>
   -<%= release.description %><br>
-  <a href="/releases/<%= release.id %>/edit">Edit</a>
-  <form method="post" action="/releases/<%= release.id %>/delete">
-    <input type="hidden" name="_method" value="delete" />
-  <input type="submit" id="submit" value="Delete"><br>
+  <a href="/releases/<%= release.id %>">Details</a>
 <% end %>
 <br><br>
 <a class="button" href="/releases/new">Add a New Release</a>

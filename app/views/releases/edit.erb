@@ -1,6 +1,7 @@
-<h1><%= @release.title %> by <%= @release.artist %></h1>
-<a class="button" href="/releases/#{<%= @release.id %>}/edit">Edit Release</a>
-<form method="post" id="form1" action="/releases/<%= @release.id %>/delete">
-  <input type="hidden" name="_method" value="delete" />
+<form method="post" id="form1" action="/releases/<%= @release.id %>/edit">
+  <input type="hidden" name="_method" value="patch" />
+  <input type="text" name="title" value="<%= @release.title">
+  <input type="text" name="artist" value="<%= @release.artist">
+  <input type="text" name="description" value="<%= @release.description">
 </form>
-<button type="submit" form="form1">Delete Release</button>
+<button type="submit" form="form1">Update Release</button>
