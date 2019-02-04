@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     if logged_in?
       redirect to '/releases'
     else
+      @message = " "
       erb :'users/signup'
     end
   end
@@ -13,6 +14,9 @@ class UsersController < ApplicationController
   post '/signup' do 
     if params["username"] == "" || params["email"] == "" || params["password"] == ""
       redirect '/signup'
+    elsif User.find_by(username: params[:username])
+      @message = "Username already exists, please choose another."
+      erb :'users/signup'
     else
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       session[:user_id] = @user.id
