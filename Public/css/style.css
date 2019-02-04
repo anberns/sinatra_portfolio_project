@@ -6,10 +6,6 @@ a {
   text-decoration: none;
 }
 
-.red_text {
-  color: red;
-}
-
 .button {
   background-color: rgb(0, 122, 204);
   border:1px solid  rgb(0, 122, 204);
