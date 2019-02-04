@@ -30,7 +30,12 @@ class ApplicationController < Sinatra::Base
   end
 
   def find_album_info(artist, title)
-    html = open("https://www.discogs.com/search/?type=all&title=#{plusify(title)}&artist=#{plusify(artist)}&label=&track=&catno=&barcode=&anv=&format=&credit=&genre=&style=&country=&year=&submitter=&contributor=&matrix=&advanced=1")
+    begin
+      html = open("https://www.discogs.com/search/?type=all&title=#{plusify(title)}&artist=#{plusify(artist)}&label=&track=&catno=&barcode=&anv=&format=&credit=&genre=&style=&country=&year=&submitter=&contributor=&matrix=&advanced=1")
+    rescue
+      @message = "Something went wrong when downloading track information."
+      erb :'error'
+    end
     search_results = Nokogiri::HTML(html)
     release = search_results.css("div.shortcut_navigable")[0]
     url = release.css("a")[0].attribute("href").value
