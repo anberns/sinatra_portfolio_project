@@ -31,25 +31,30 @@ class ReleasesController < ApplicationController
 
   #create new release
   post '/releases' do 
-    if logged_in?
-      if params["artist"] != "" && params["title"] != ""
-        album_hash = find_album_info(params["artist"], params["title"])
-        release = Release.create(title: album_hash[:title], artist: album_hash[:artist])
-        release.description = params["description"]
-        release.img_link = album_hash[:img_link]
-        release.user_id = session[:user_id]
-        release.save
-        album_hash[:tracks].each do |track|
-          new_track = Track.create(title: track)
-          new_track.release_id = release.id 
-          new_track.save
+    begin
+      if logged_in?
+        if params["artist"] != "" && params["title"] != ""
+          album_hash = find_album_info(params["artist"], params["title"])
+          release = Release.create(title: album_hash[:title], artist: album_hash[:artist])
+          release.description = params["description"]
+          release.img_link = album_hash[:img_link]
+          release.user_id = session[:user_id]
+          release.save
+          album_hash[:tracks].each do |track|
+            new_track = Track.create(title: track)
+            new_track.release_id = release.id 
+            new_track.save
+          end
+          redirect to '/releases'
+        else
+          redirect to '/releases/new'
         end
-        redirect to '/releases'
       else
-        redirect to '/releases/new'
+        redirect :'/'
       end
-    else
-      redirect :'/'
+    rescue
+      @message = "There was a problem retrieving album information."
+      erb :error
     end
   end
 
