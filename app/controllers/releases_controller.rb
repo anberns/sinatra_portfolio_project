@@ -26,7 +26,12 @@ class ReleasesController < ApplicationController
     end
 
     @release = Release.find(params[:id])
-    erb :'releases/show'
+    if validate_user(@release.user_id)
+      erb :'releases/show'
+    else 
+      @message = "You are not authorized to edit this album."
+      erb :'error'
+    end
   end
 
   #create new release
@@ -60,7 +65,7 @@ class ReleasesController < ApplicationController
     end
 
     @release = Release.find(params[:id])
-    if @release.user_id == current_user.id
+    if validate_user(@release.user_id)
       erb :'releases/edit'
     else 
       @message = "You are not authorized to edit this album."
@@ -80,7 +85,7 @@ class ReleasesController < ApplicationController
     end
 
     release = Release.find(params[:id])
-    if release.user_id == current_user.id 
+    if validate_user(release.user_id) 
       release.update(title: params["title"], artist: params["artist"], description: params["description"])
       redirect to "/releases/#{params[:id]}"
     else 
@@ -96,7 +101,7 @@ class ReleasesController < ApplicationController
     end
 
     release = Release.find(params[:id])
-    if release.user_id == session[:user_id]
+    if validate_user(release.user_id)
       release.tracks.each do |track|
         Track.destroy(track.id)
       end

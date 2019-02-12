@@ -25,4 +25,8 @@ class ApplicationController < Sinatra::Base
     return User.find(session[:user_id])
   end
 
+  def validate_user(release_id)
+    return release_id == current_user.id
+  end
+
 end
