@@ -4,7 +4,7 @@ class ReleasesController < ApplicationController
   get '/releases' do
     if logged_in?
       @user = current_user
-      erb :'releases/show'
+      erb :'releases/index'
     else
       redirect to '/'
     end
@@ -23,7 +23,7 @@ class ReleasesController < ApplicationController
   get '/releases/:id' do
     if logged_in?
       @release = Release.find(params[:id])
-      erb :'releases/show_detail'
+      erb :'releases/show'
     else 
       redirect to '/'
     end
@@ -35,15 +35,9 @@ class ReleasesController < ApplicationController
       if logged_in?
         if params["artist"] != "" && params["title"] != ""
           album_hash = find_album_info(params["artist"], params["title"])
-          release = Release.create(title: album_hash[:title], artist: album_hash[:artist])
-          release.description = params["description"]
-          release.img_link = album_hash[:img_link]
-          release.user_id = session[:user_id]
-          release.save
+          release = Release.create(title: album_hash[:title], description: params["description"], artist: album_hash[:artist], img_link: album_hash[:img_link], user_id: session[:user_id])
           album_hash[:tracks].each do |track|
-            new_track = Track.create(title: track)
-            new_track.release_id = release.id 
-            new_track.save
+            new_track = Track.create(title: track, release_id: release.id)
           end
           redirect to '/releases'
         else
@@ -62,19 +56,29 @@ class ReleasesController < ApplicationController
   get '/releases/:id/edit' do
     if logged_in?
       @release = Release.find(params[:id])
-      erb :'releases/edit'
+      if @release.user_id == current_user.id
+        erb :'releases/edit'
+      else 
+        @message = "You are not authorized to edit this album."
+        erb :'error'
+      end
     else 
       redirect :'/'
     end
   end
 
   #update a release
-  patch '/releases/:id/edit' do 
+  patch '/releases/:id' do 
     if logged_in?
       if params["artist"] != "" && params["title"] != ""
         release = Release.find(params[:id])
-        release.update(title: params["title"], artist: params["artist"], description: params["description"])
-        redirect to "/releases/#{params[:id]}"
+        if release.user_id == current_user.id 
+          release.update(title: params["title"], artist: params["artist"], description: params["description"])
+          redirect to "/releases/#{params[:id]}"
+        else 
+          @message = "You are not authorized to edit this album."
+          erb :'error'
+        end
       else
         redirect to "/releases/#{params[:id]}/edit"
       end
@@ -84,7 +88,7 @@ class ReleasesController < ApplicationController
   end
 
   #delete release
-  delete '/releases/:id/delete' do 
+  delete '/releases/:id' do 
     if logged_in?
       release = Release.find(params[:id])
       if release.user_id == session[:user_id]

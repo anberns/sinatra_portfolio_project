@@ -1,5 +1,5 @@
 <br>
-<form method="post" id="form1" action="/releases/<%= @release.id %>/edit">
+<form method="post" id="form1" action="/releases/<%= @release.id %>">
   <input type="hidden" name="_method" value="patch" />
   <label>Title</label><br>
   <input type="text" name="title" value="<%= @release.title %>"><br><br>

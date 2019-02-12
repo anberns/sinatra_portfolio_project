@@ -1,16 +1,19 @@
-<% @user.releases.each do |release| %>
-<a href="/releases/<%= release.id %>">
-  <div class="album_card">
-    <img src="<%= release.img_link %>"><br>
-    <p class="title"><%= release.title %></p>
-    <p class="artist"><%= release.artist %></p>
-  </div>
-</a>
-<% end %>
-<br>
-<div class="show_nav">
-  <a class="button" href="/releases/new">Add to Collection</a>
-  <a class="button" href="/tracks">All Tracks in Collection</a>
-  <a class="button" href="/logout">Logout</a>
+<div class="release_details">
+  <img src="<%= @release.img_link %>">
 </div>
-
+<div class="release_details">
+  <p class="title"><%= @release.title %></a></p>
+  <p class="artist"><%= @release.artist %></p>
+  <p class="description"><%= @release.description %></p>
+  <ol>
+    <% @release.tracks.each do |track| %>
+      <li><%= track.title %></li>
+    <% end %>
+  </ol>
+  <a class="button" href="/releases">Back</a> 
+  <a class="button" href="/releases/<%= @release.id %>/edit">Edit</a>
+  <form method="post" action="/releases/<%= @release.id %>">
+    <input type="hidden" name="_method" value="delete" />
+    <input class="button delete" type="submit" id="submit" value="Delete"><br>
+  </form>
+</div>
